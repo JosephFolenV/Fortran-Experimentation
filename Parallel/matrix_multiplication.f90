@@ -4,10 +4,14 @@ PROGRAM matrix_multiplication
         integer, parameter :: n = 3
         integer :: i, j, k
         real, dimension(n,n) :: A, B, C
+        real :: t1, t2
 
         !Initialize matrices A and B
         A = reshape([1.,2.,3.,4.,5.,6.,7.,8.,9.],[n,n])
         B = reshape([9.,8.,7.,6.,5.,4.,3.,2.,1.],[n,n])
+        
+        !Starts timer
+        call cpu_time(t1)
 
         ! Multiply matrices A and B
         do i = 1,n
@@ -18,6 +22,9 @@ PROGRAM matrix_multiplication
                 end do
             end do
         end do
+        
+        !Ends timer
+        call cpu_time(t2)
 
         ! Print the result matrix C
         print *, 'Matrix C ='
@@ -29,5 +36,5 @@ PROGRAM matrix_multiplication
             !(C(i,j), j=1, n) is an IMPLIED do loop.
             print '(3F10.2)', (C(i,j), j = 1,n)
         end do
-
+        print *, 'Calculation time: ',t2-t1,'seconds'
 END PROGRAM matrix_multiplication
