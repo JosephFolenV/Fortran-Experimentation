@@ -1,15 +1,20 @@
 PROGRAM matrix_multiplication
 
         implicit none
-        integer, parameter :: n = 3
+        integer, parameter :: n = 35
         integer :: i, j, k
         real, dimension(n,n) :: A, B, C
         real :: t1, t2
 
         !Initialize matrices A and B
-        A = reshape([1.,2.,3.,4.,5.,6.,7.,8.,9.],[n,n])
-        B = reshape([9.,8.,7.,6.,5.,4.,3.,2.,1.],[n,n])
-        
+        !A = reshape([1.,2.,3.,4.,5.,6.,7.,8.,9.],[n,n])
+        !B = reshape([9.,8.,7.,6.,5.,4.,3.,2.,1.],[n,n])
+        do i = 1, n
+            do j = 1, n
+            A(i,j) = real(i+j)
+            B(i,j) = real(i+j)
+            end do
+        end do
         !Starts timer
         call cpu_time(t1)
 
@@ -34,7 +39,7 @@ PROGRAM matrix_multiplication
             !a width of 10 characters and 2 digits after the decimal point.
             
             !(C(i,j), j=1, n) is an IMPLIED do loop.
-            print '(3F10.2)', (C(i,j), j = 1,n)
+            print '(35F10.2)', (C(i,j), j = 1,n)
         end do
         print *, 'Calculation time: ',t2-t1,'seconds'
 END PROGRAM matrix_multiplication
